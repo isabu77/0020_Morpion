@@ -1,0 +1,27 @@
+td{
+	background-color: #168655;
+	width:75px;
+	height:75px;
+	position:relative;
+	margin:5px;
+	text-align: center;
+}
+
+.joueur1 , .joueur2{
+	border-radius: 50px;
+	width:55px;
+	height:55px;
+	display:inline-block;
+}
+.joueur1{
+	background-color: red;
+}
+
+.joueur2{
+	background-color: blue;
+}
+
+#puissance4{
+	overflow:hidden; /* extérieur de la div invisible pour que les jetons ne sortent pas du tableau*/
+}
+
