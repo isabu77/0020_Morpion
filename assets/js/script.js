@@ -1,3 +1,5 @@
+/************* JEU du MORPION à 2 JOUEURS **************/
+/* variables globales */
 var joueur = 1;
 var nbColonnes = 5;
 var nbLignes = 5;
@@ -6,9 +8,10 @@ var texte = "";
 var plateau = [];  // ou new Array();
 var score = 5;
 
-
+/* appel principal pour lancer le jeu */
 newGame();
 
+/* lancement du jeu */
 function newGame(){
 
 	this.nbLignes = this.nbColonnes = prompt("Entrez la taille du plateau (nb de lignes et de colonnes) ?");
@@ -42,10 +45,12 @@ function newGame(){
 	creerTableau();
 }
 
+/* affichage d'un texte dans la div "textAnnonce" */
 function afficheTextAnnonce(texte){
 	document.getElementById("textAnnonce").innerHTML = texte;
 }
 
+/* attribution de la couleur au joueur */
 function nomDuJoueur(numJoueur){
 	if (numJoueur == 1){
 		return ("rouge");
@@ -54,7 +59,7 @@ function nomDuJoueur(numJoueur){
 	}
 }
 
-
+/* création du tableau représentant le plateau de jeu */
 function creerTableau(){
     this.texte = '<table>';
     for (i = 0; i < this.nbLignes; i++) {
@@ -74,6 +79,8 @@ function creerTableau(){
     document.getElementById('puissance4').innerHTML = this.texte;
 }
 
+/* evenement Clic sur une case */
+/* i= ligne , j= colonne de la case cliquée */
 function detectClic(i,j){
 	// s'il reste une case de libre dans la colonne et si le jeu est en cours
 	if(verifPosition(i,j) && this.jeu){
@@ -98,6 +105,8 @@ function detectClic(i,j){
 	}
 }
 
+/* vérification que la case ciquée est libre pour y jouer */
+/* i= ligne , j= colonne de la case cliquée */
 function verifPosition(i,j){
 	if(this.plateau[i][j] == 0){
 		return true;
@@ -107,7 +116,8 @@ function verifPosition(i,j){
 	}
 }
 
-/* no de la ligne disponible où le jeton peut etre posé */
+/* poser le jeton sur la case cliquée  */
+/* i= ligne , j= colonne de la case cliquée */
 function poseJeton(i,j){
 	//for (var i = this.nbLignes-1; i >= 0; i--) {
 		if(this.plateau[i][j] == 0){
@@ -118,10 +128,12 @@ function poseJeton(i,j){
 	//}
 }
 
+/* x= ligne , y= colonne de la case cliquée , j= n° du joueur*/
 function refreshTableau(x, y, i){
 	document.getElementById(x + '-' + y).innerHTML = "<div class='joueur" + i + "'></div>";
 }
 
+/* fonction récursive de calcul du score et détection du gagnant */
 function puissanceQuatre(lig, col, l=0, c=0){
 	// condition primaire de la récursivité
 	if (c == 0 && l == 0){
